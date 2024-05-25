@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/Login-Registration/GoogleLogin";
 import { AuthContext } from "../components/Providers/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -25,16 +26,19 @@ const Register = () => {
       createUser(email, password)
       .then((result) => {
         // navigate(location?.state ? location.state : '/')
+        toast.success("Registered Successful")
         navigate(from || '/')
       })
       .catch((error) => {
         console.log(error)
+        toast.error("Failed to Register. Try again")
       });
     }
   };
 
   return (
     <>
+      <Toaster/>
       <div className="hero min-h-screen bg-zinc-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

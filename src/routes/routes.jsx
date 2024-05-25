@@ -44,11 +44,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "shop",
+        loader: ()=> fetch('http://localhost:3000/products'),
         element: <PrivateRoutes><Shop /></PrivateRoutes>,
       },
       {
         path: "/login",
-        element: <PublicRoute><Login /></PublicRoute>,
+        element: <Login />,
       },
       {
         path: "/register",
