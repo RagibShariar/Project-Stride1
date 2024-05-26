@@ -8,7 +8,7 @@ const SingleProduct = ({ product }) => {
     <>
       <div className="card w-[350px] bg-base-100 shadow-xl my-2 sm:my-4">
         <div className="min-h-80 ">
-          <Link>
+          <Link to={`/products/${product.id}`}>
           <img
             className=" h-80 mx-auto"
             src={product.image}
@@ -17,7 +17,7 @@ const SingleProduct = ({ product }) => {
           </Link>
         </div>
         <div className="card-body">
-          <Link>
+          <Link to={`/products/${product.id}`}>
           <h2 className="card-title">
             {product.title}
             <div className="badge badge-secondary">NEW</div>

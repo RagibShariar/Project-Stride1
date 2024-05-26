@@ -34,7 +34,10 @@ const Dashboard = () => {
                 <Link to={"/"}>Home</Link>
               </li>
               <li className="text-lg font-bold ">
-                <Link >All Products</Link>
+                <Link to="all-products">All Products</Link>
+              </li>
+              <li className="text-lg font-bold ">
+                <Link to="add-products">Add Products</Link>
               </li>
               
             </div>
