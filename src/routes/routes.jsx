@@ -15,6 +15,7 @@ import Register from "../pages/Register";
 import Shop from "../pages/Shop";
 import PrivateRoutes from "./PrivateRoutes";
 import AddProduct from "../pages/Admin/AddProduct";
+import EditProduct from "../pages/Admin/EditProductModal";
 
 export const router = createBrowserRouter([
   {
