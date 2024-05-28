@@ -16,6 +16,7 @@ import Shop from "../pages/Shop";
 import PrivateRoutes from "./PrivateRoutes";
 import AddProduct from "../pages/Admin/AddProduct";
 import EditProduct from "../pages/Admin/EditProductModal";
+import EditProductPage from "../pages/Admin/EditProductPage";
 
 export const router = createBrowserRouter([
   {
@@ -97,6 +98,15 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <AddProduct />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/dash/edit-product/:id",
+        loader: ({params})=> fetch(`http://localhost:3000/products/${params.id}`), 
+        element: (
+          <PrivateRoutes>
+            <EditProductPage />
           </PrivateRoutes>
         ),
       },

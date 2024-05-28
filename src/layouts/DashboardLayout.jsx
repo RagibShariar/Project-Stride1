@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../components/Providers/AuthProvider";
 
 const Dashboard = () => {
@@ -27,17 +27,17 @@ const Dashboard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between">
+          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between ">
             {/* Sidebar content here */}
-            <div>
+            <div className="gap-2 flex flex-col">
               <li className="text-lg font-bold ">
-                <Link to={"/"}>Home</Link>
+                <NavLink to={"/"}>Home</NavLink>
               </li>
               <li className="text-lg font-bold ">
-                <Link to="all-products">All Products</Link>
+                <NavLink to="all-products">All Products</NavLink>
               </li>
               <li className="text-lg font-bold ">
-                <Link to="add-products">Add Products</Link>
+                <NavLink to="add-products">Add Products</NavLink>
               </li>
               
             </div>

@@ -1,45 +1,47 @@
+import { useState } from "react";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AddProduct = () => {
-  const id = String(Date.now());
+const EditProductPage = () => {
+  const product = useLoaderData();
+  const navigate = useNavigate();
+  const location = useLocation();
+  // console.log("navigate log", navigate)
+  console.log("location log", location);
 
-  const handleAddProduct = async (e) => {
+  const [title, setTitle] = useState(product.title);
+  const [description, setDescription] = useState(product.description);
+  const [price, setPrice] = useState(product.price);
+  const [image, setImage] = useState(product.image);
+
+  const edited_data = { title, description, price, image };
+
+  const handleEditProduct = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const title = form.title.value;
-    const description = form.description.value;
-    const price = form.price.value;
-    const image = form.image_url.value;
+    // console.log("new data after edit", edited_data);
 
-    const data = { id, title, description, price, image };
-    // console.log(data)
-
-    // traditional method POST
-    await fetch("http://localhost:3000/products", {
-      method: "POST",
-      header: {
+    fetch(`http://localhost:3000/products/${product.id}`, {
+      method: "PATCH",
+      headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(edited_data),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        // success modal alert
         Swal.fire({
-          title: "Product Added Successfully",
-          icon: "success"
+          title: "Edited Successfully",
+          icon: "success",
         });
-        form.reset();
+        navigate(-1);
       });
   };
 
   return (
     <>
-      <div>AddProduct</div>
-
+      <div>EditProductPage</div>
       <div className="shrink-0 w-full md:w-[800px] shadow-2xl rounded-xl bg-base-100">
-        <form onSubmit={handleAddProduct} className="card-body">
+        <form onSubmit={handleEditProduct} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Product ID</span>
@@ -47,7 +49,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="id"
-              value={id}
+              value={product.id}
               readOnly
               placeholder="ID"
               className="input input-bordered"
@@ -59,6 +61,8 @@ const AddProduct = () => {
               type="text"
               name="title"
               placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
               className="input input-bordered"
             />
@@ -68,6 +72,8 @@ const AddProduct = () => {
             <textarea
               name="description"
               placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               required
               className="textarea textarea-bordered"
             ></textarea>
@@ -80,6 +86,8 @@ const AddProduct = () => {
             type="number"
             name="price"
             placeholder="Price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             required
             className="input input-bordered"
           />
@@ -90,6 +98,8 @@ const AddProduct = () => {
             type="text"
             name="image_url"
             placeholder="Image URL"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
             required
             className="input input-bordered"
           />
@@ -102,4 +112,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default EditProductPage;

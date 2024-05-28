@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import Headroom from "react-headroom";
 
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext)
@@ -14,30 +15,31 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li className="font-bold text-lg">
-        <Link to={"/"}>Home</Link>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
       <li className="font-bold text-lg">
-        <Link to={"/about"}>About Us</Link>
+        <NavLink to={"/about"}>About Us</NavLink>
       </li>
       <li className="font-bold text-lg">
-        <Link to={"/shop"}>Shop</Link>
+        <NavLink to={"/shop"}>Shop</NavLink>
       </li>
       <li className="font-bold text-lg">
-        <Link to={"/contact"}>Contact Us</Link>
+        <NavLink to={"/contact"}>Contact Us</NavLink>
       </li>
       <li className="font-bold text-lg">
-        <Link to={"/all-countries"}>All Countries</Link>
+        <NavLink to={"/all-countries"}>All Countries</NavLink>
       </li>
 
       <li className="font-bold text-lg">
-        <Link to={"dash"}>Dashboard</Link>
+        <NavLink to={"dash"}>Dashboard</NavLink>
       </li>
     </>
   );
 
   return (
     <>
-      <div className="navbar sticky top-0 z-40 bg-transparent backdrop-blur-3xl shadow-lg px-12">
+      <Headroom>
+      <div className="navbar  z-50 bg-transparent backdrop-blur-2xl shadow-lg px-12">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -71,7 +73,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{menuItems}</ul>
+          <ul className="menu menu-horizontal px-1 gap-x-2">{menuItems}</ul>
         </div>
         {/* Navbar END */}
         <div className="navbar-end">
@@ -142,7 +144,8 @@ const Navbar = () => {
             </div>
           )}
         </div>
-      </div>
+        </div>
+        </Headroom>
     </>
   );
 };

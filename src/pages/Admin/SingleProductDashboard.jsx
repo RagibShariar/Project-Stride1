@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
-const SingleProductDashboard = ({ product,setEditModal }) => {
+const SingleProductDashboard = ({ product, setEditModal }) => {
   const { id } = product;
-
 
   const handleDelete = async () => {
     Swal.fire({
@@ -51,14 +50,19 @@ const SingleProductDashboard = ({ product,setEditModal }) => {
           <label
             htmlFor="my_modal_5"
               onClick={() => setEditModal(product)}
-              className="btn btn-accent text-base text-white px-10"
+              className="btn btn-accent text-base text-white "
             >
-              Edit
+              Edit 1
             </label>
-          
+          <Link to={`/dash/edit-product/${id}`}>
+            <button
+            className="btn bg-purple-500 text-base text-white ">
+            Edit 2
+          </button>
+          </Link>
           <button
             onClick={handleDelete}
-            className="btn btn-error text-base text-white px-10"
+            className="btn btn-error text-base text-white px-7"
           >
             Delete
           </button>
