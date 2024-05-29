@@ -8,7 +8,14 @@ const PrivateRoutes = ({ children }) => {
   // console.log(location);
 
   if (loading) {
-    return <span className="loading loading-bars loading-lg "></span>;
+    return(
+    <>
+    <div className=" flex items-center justify-center">
+      <div className="loading loading-bars loading-lg">
+      
+      </div>
+    </div>;
+    </>)
   }
 
   if (user) {

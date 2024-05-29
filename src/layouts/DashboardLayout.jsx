@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../components/Providers/AuthProvider";
 
 const Dashboard = () => {
@@ -39,7 +39,6 @@ const Dashboard = () => {
               <li className="text-lg font-bold ">
                 <NavLink to="add-products">Add Products</NavLink>
               </li>
-              
             </div>
             <div>
               <button
