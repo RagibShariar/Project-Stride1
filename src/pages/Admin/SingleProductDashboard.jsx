@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
 const SingleProductDashboard = ({ product, setEditModal }) => {
+  const token = localStorage.getItem('token');
   const { _id } = product;
 
   const handleDelete = async () => {
@@ -18,6 +19,10 @@ const SingleProductDashboard = ({ product, setEditModal }) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/products/${_id}`, {
           method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
+          }
         })
           .then((res) => res.json())
           .then((data) => {

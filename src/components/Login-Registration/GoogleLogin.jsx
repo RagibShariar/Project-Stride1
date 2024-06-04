@@ -15,7 +15,6 @@ const GoogleLogin = () => {
   const handleGoogleLogin = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result)
         const userInfo = {email: result.user.email, name: result.user.displayName, image: result.user.photoURL
         }
         fetch(`http://localhost:5000/users`, {
@@ -27,7 +26,8 @@ const GoogleLogin = () => {
         })
           .then(res => res.json())
           .then(data => {
-          console.log(data)
+            // console.log(data);
+            localStorage.setItem('token', data?.token);
         })
         navigate(from || "/");
       })

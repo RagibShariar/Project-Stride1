@@ -3,6 +3,7 @@ import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const EditProductPage = () => {
+  const token = localStorage.getItem('token');
   const product = useLoaderData();
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,6 +36,7 @@ const EditProductPage = () => {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(productInfo),
     })

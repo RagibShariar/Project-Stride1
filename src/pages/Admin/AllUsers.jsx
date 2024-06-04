@@ -1,12 +1,17 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllUsers = () => {
+  const token = localStorage.getItem('token');
   const users = useLoaderData();
 
   const handleDelete = (id) => {
     console.log(id)
     fetch(`http://localhost:5000/users/${id}`, {
       method: 'DELETE',
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
     })
       .then(res => res.json())
     .then(data => console.log(data))

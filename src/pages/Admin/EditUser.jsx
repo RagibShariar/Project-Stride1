@@ -2,6 +2,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const EditUser = () => {
+  const token = localStorage.getItem('token');
   const user = useLoaderData();
   const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ const EditUser = () => {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userInfo),
     })

@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 
 const AddProduct = () => {
+  const token = localStorage.getItem('token');
   const handleAddProduct = (e) => { 
     e.preventDefault();
     const form = e.target;
@@ -18,6 +19,7 @@ const AddProduct = () => {
       method: 'POST',
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
           body: JSON.stringify(productInfo),
     })
