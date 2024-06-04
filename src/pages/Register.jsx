@@ -8,7 +8,7 @@ const Register = () => {
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("from register page", location);
+  // console.log("from register page", location);
   const from = location?.state?.from?.pathname;
   const [passMatch, setPassMatch] = useState(true);
 
@@ -17,7 +17,7 @@ const Register = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirm_password.value;
-    // console.log(email, password, confirmPassword);
+    const userInfo = {email, password};
 
     if (password !== confirmPassword) {
       setPassMatch(false);
@@ -26,6 +26,19 @@ const Register = () => {
       createUser(email, password)
       .then((result) => {
         // navigate(location?.state ? location.state : '/')
+
+        fetch(`http://localhost:5000/users`, {
+          method: 'POST',
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then(res => res.json())
+          .then(data => {
+          console.log(data)
+        })
+
         toast.success("Registered Successful")
         navigate(from || '/')
       })

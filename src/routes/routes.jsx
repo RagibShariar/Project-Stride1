@@ -17,6 +17,9 @@ import PrivateRoutes from "./PrivateRoutes";
 import AddProduct from "../pages/Admin/AddProduct";
 import EditProduct from "../pages/Admin/EditProductModal";
 import EditProductPage from "../pages/Admin/EditProductPage";
+import Profile from "../pages/Admin/Profile";
+import AllUsers from "../pages/Admin/AllUsers";
+import EditUser from "../pages/Admin/EditUser";
 
 export const router = createBrowserRouter([
   {
@@ -49,7 +52,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "shop",
-        loader: () => fetch("http://localhost:3000/products"),
+        loader: () => fetch("http://localhost:5000/products"),
         element: (
             <Shop />
         ),
@@ -57,7 +60,7 @@ export const router = createBrowserRouter([
       {
         path: "/products/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/products/${params.id}`),
+          fetch(`http://localhost:5000/products/${params.id}`),
         element: <ProductDetails />,
       },
       {
@@ -101,12 +104,38 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dash/edit-product/:id",
-        loader: ({params})=> fetch(`http://localhost:3000/products/${params.id}`), 
+        loader: ({params})=> fetch(`http://localhost:5000/products/${params.id}`), 
         element: (
           <PrivateRoutes>
             <EditProductPage />
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "/dash/profile",
+        element: (
+          <PrivateRoutes>
+            <Profile />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/dash/all-users",
+        element: (
+          <PrivateRoutes>
+            <AllUsers />
+          </PrivateRoutes>
+        ),
+        loader: ()=> fetch(`http://localhost:5000/users`)
+      },
+      {
+        path: "/dash/edit-user/:userId",
+        element: (
+          <PrivateRoutes>
+            <EditUser />
+          </PrivateRoutes>
+        ),
+        loader: ({params})=> fetch(`http://localhost:5000/users/${params.userId}`)
       },
     ],
   },

@@ -1,103 +1,142 @@
 import Swal from "sweetalert2";
 
 const AddProduct = () => {
-  const id = String(Date.now());
-
-  const handleAddProduct = async (e) => {
+  const handleAddProduct = (e) => { 
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
-    const description = form.description.value;
     const price = form.price.value;
-    const image = form.image_url.value;
+    // const category = form.category.value;
+    const stock = form.stock.value;
+    const brand = form.brand.value;
+    const discount = form.discount.value;
+    const description = form.description.value;
+    const imageUrl = form.imageUrl.value;
+    const productInfo = { title, price, stock, brand, discount, description, imageUrl };
 
-    const data = { id, title, description, price, image };
-    // console.log(data)
-
-    // traditional method POST
-    await fetch("http://localhost:3000/products", {
-      method: "POST",
-      header: {
+    fetch('http://localhost:5000/products',  {
+      method: 'POST',
+      headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(data),
+          body: JSON.stringify(productInfo),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // success modal alert
+      .then(res => res.json())
+    .then(data=> {
+      if (data.insertedId) {
         Swal.fire({
-          title: "Product Added Successfully",
+          title: "Product added successfully",
           icon: "success"
         });
         form.reset();
-      });
-  };
+      }
+    })
+  }
 
   return (
     <>
       <div>AddProduct</div>
 
-      <div className="shrink-0 w-full md:w-[800px] shadow-2xl rounded-xl bg-base-100">
-        <form onSubmit={handleAddProduct} className="card-body">
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Product ID</span>
-            </label>
+      <div className=" p-6 w-full rounded-xl shadow-md mb-12 mt-12">
+        <div className="mb-12 flex justify-between border-b-2 border-dashed py-4">
+          <p className="text-2xl font-semibold">Add New Product</p>
+        
+        </div>
+        <form onSubmit={handleAddProduct}>
+          {/* 1st row */}
+        <div className="mb-12 md:grid md:grid-cols-2 ">
+          <div className="mr-6">
+            <p className="text-lg ">Product Title</p>
             <input
+              className="mt-2 text-xl font-semibold bg-zinc-200 p-3 rounded-lg w-full outline-[#007bff]"
+                placeholder="Product Title"
+                name="title"
               type="text"
-              name="id"
-              value={id}
-              readOnly
-              placeholder="ID"
-              className="input input-bordered"
             />
-            <label className="label">
-              <span className="label-text">Product Name</span>
-            </label>
+          </div>
+          <div>
+            <p className="text-lg">Price</p>
             <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              required
-              className="input input-bordered"
+              className="mt-2 text-xl font-semibold bg-zinc-200 p-3 rounded-lg w-full outline-[#007bff]"
+                placeholder="Price"
+                name="price"
+              type="number"
             />
-            <label className="label">
-              <span className="label-text">Product Description</span>
-            </label>
-            <textarea
+          </div>
+        </div>
+        {/* 2nd row */}
+        <div className="mb-12 md:grid md:grid-cols-2 ">
+          <div className="mr-6">
+            <p className="text-lg">Category</p>
+            <select className="select select-bordered w-full mt-2 text-xl font-semibold bg-zinc-200 rounded-lg ">
+              {/* <option disabled selected>
+                Select Category
+              </option> */}
+              {/* {cat.map((c) => (
+                <option key={c._id}>{c.name}</option>
+              ))} */}
+              {/* <option>Han Solo</option>
+              <option>Greedo</option> */}
+            </select>
+          </div>
+          <div>
+            <p className="text-lg">Stock</p>
+            <input
+              className="mt-2 text-xl font-semibold bg-zinc-200 p-3 rounded-lg w-full outline-[#007bff]"
+                placeholder="Stock"
+                name="stock"
+              type="number"
+            />
+          </div>
+        </div>
+        {/* 3rd row */}
+        <div className="mb-12 md:grid md:grid-cols-2 ">
+          <div className="mr-6">
+            <p className="text-lg ">Brand</p>
+            <input
+              className="mt-2 text-xl font-semibold bg-zinc-200 p-3 rounded-lg w-full outline-[#007bff]"
+                placeholder="Brand"
+                name="brand"
+              type="text"
+            />
+          </div>
+          <div>
+            <p className="text-lg">Discount Percentage</p>
+            <input
+              className="mt-2 text-xl font-semibold bg-zinc-200 p-3 rounded-lg w-full outline-[#007bff]"
+                placeholder="Discount Percentage"
+                name="discount"
+              type="number"
+            />
+          </div>
+        </div>
+        {/* 4th row */}
+        <div className="mb-12 w-full">
+          <textarea
+            placeholder="Type Message"
+            className="mx-auto w-full block  border border-gray-300 outline-[#007bff]  text-xl font-semibold bg-zinc-200 p-3 rounded-lg"
+              rows="4"
               name="description"
-              placeholder="Description"
-              required
-              className="textarea textarea-bordered"
-            ></textarea>
-          </div>
-
-          <label className="label">
-            <span className="label-text">Price</span>
-          </label>
+          ></textarea>
+        </div>
+        {/* 5th row */}
+        <div className="mb-12 w-full">
+          <p className="text-lg">Image URL</p>
           <input
-            type="number"
-            name="price"
-            placeholder="Price"
-            required
-            className="input input-bordered"
-          />
-          <label className="label">
-            <span className="label-text">Image URL</span>
-          </label>
-          <input
+            className="mt-2 text-xl font-semibold bg-zinc-200 p-3 rounded-lg w-full outline-[#007bff]"
+              placeholder="Image URL"
+              name="imageUrl"
             type="text"
-            name="image_url"
-            placeholder="Image URL"
-            required
-            className="input input-bordered"
           />
-          <div className="form-control mt-6">
-            <button className="btn btn-primary">Add</button>
-          </div>
+        </div>
+        <div className="mt-10 text-end">
+          <button type="submit" className="w-full btn border bg-green-600 te hover:bg-green-700 text-white">
+            Save Changes
+          </button>
+        </div>
         </form>
       </div>
+
     </>
   );
 };

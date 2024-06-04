@@ -7,9 +7,9 @@ const AllProducts = () => {
   const [editModal, setEditModal] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("http://localhost:5000/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {setProducts(data)});
   }, [ ]);
 
   return (
@@ -18,7 +18,7 @@ const AllProducts = () => {
       <div className="px-6 flex flex-wrap gap-x-6">
       {products.map((product) => (
         <SingleProductDashboard
-          key={product.id}
+          key={product._id}
           product={product}
           setEditModal={setEditModal} 
         />

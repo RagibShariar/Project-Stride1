@@ -10,7 +10,7 @@ const Products = ({ products }) => {
       </h2>
       <div className="my-6 container mx-auto flex flex-wrap gap-4 justify-between">
         {
-          products?.map(product => <SingleProduct key={product.id} product={product} />)
+          products?.map(product => <SingleProduct key={product._id} product={product} />)
         }
       </div>
     </>

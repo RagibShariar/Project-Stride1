@@ -6,18 +6,18 @@ const SingleProduct = ({ product }) => {
   // console.log(product)
   return (
     <>
-      <div className="card w-[350px] bg-base-100 shadow-xl my-2 sm:my-4">
+      <div className="card w-[350px] bg-base-100 shadow-xl my-2 sm:my-4 ">
         <div className="min-h-80 ">
-          <Link to={`/products/${product.id}`}>
+          <Link to={`/products/${product._id}`}>
           <img
             className=" h-80 mx-auto"
-            src={product.image}
+            src={product.imageUrl}
             alt="Shoes"
           />
           </Link>
         </div>
         <div className="card-body">
-          <Link to={`/products/${product.id}`}>
+          <Link to={`/products/${product._id}`}>
           <h2 className="card-title">
             {product.title}
             <div className="badge badge-secondary">NEW</div>

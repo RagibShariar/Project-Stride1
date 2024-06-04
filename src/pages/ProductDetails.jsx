@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 
 const ProductDetails = () => {
   const product = useLoaderData();
-  const { title, image, price, category, description, rating } = product;
+  const { title, imageUrl, price, category, description,  } = product;
 
   return (
     <>
@@ -13,7 +13,7 @@ const ProductDetails = () => {
               <img
                 alt="ecommerce"
                 className=" w-full lg:h-auto  object-cover object-center rounded"
-                src={image}
+                src={imageUrl}
               />
             </div>
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -80,9 +80,9 @@ const ProductDetails = () => {
                   >
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                   </svg>
-                  <span className="text-gray-600 ml-3">
+                  {/* <span className="text-gray-600 ml-3">
                     {rating?.rate} ({rating?.count})
-                  </span>
+                  </span> */}
                 </span>
               </div>
               <p className="leading-relaxed">{description}</p>

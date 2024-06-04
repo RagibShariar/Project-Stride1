@@ -10,12 +10,25 @@ const GoogleLogin = () => {
   const location = useLocation();
   const { googleSignIn } = useContext(AuthContext);
   const from = location?.state?.from?.pathname;
-  console.log("from google login button click", from)
+  // console.log("from google login button click", from)
 
   const handleGoogleLogin = () => {
     googleSignIn()
       .then((result) => {
-        // navigate(location?.state ? location.state : '/')
+        console.log(result)
+        const userInfo = {email: result.user.email, name: result.user.displayName, image: result.user.photoURL
+        }
+        fetch(`http://localhost:5000/users`, {
+          method: 'POST',
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then(res => res.json())
+          .then(data => {
+          console.log(data)
+        })
         navigate(from || "/");
       })
       .catch((error) => {

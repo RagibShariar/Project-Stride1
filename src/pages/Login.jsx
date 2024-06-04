@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import GoogleLogin from "../components/Login-Registration/GoogleLogin";
@@ -21,18 +21,37 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname;
-  console.log("from login page", location);
+  // console.log("from login page", location);
   // console.log(user)
+
+  // useEffect(() => {
+  //   if (user.email) {
+      
+  //   }
+  // },[user])
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    const userInfo = {email, password}
 
     await signIn(email, password)
       .then((result) => {
         // navigate(location?.state ? location.state : '/')
+
+        fetch(`http://localhost:5000/users`, {
+          method: 'POST',
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then(res => res.json())
+          .then(data => {
+          console.log(data)
+        })
+
         Toast.fire({
           icon: "success",
           title: "Signed in successfully",
