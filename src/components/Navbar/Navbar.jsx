@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import Headroom from "react-headroom";
+import logo2 from "../../assets/logo2.png"
 
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext)
@@ -14,23 +15,23 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-      <li className="font-bold text-lg">
+      <li className="font-bold ">
         <NavLink to={"/"}>Home</NavLink>
       </li>
-      <li className="font-bold text-lg">
+      <li className="font-bold ">
         <NavLink to={"/about"}>About Us</NavLink>
       </li>
-      <li className="font-bold text-lg">
+      <li className="font-bold ">
         <NavLink to={"/shop"}>Shop</NavLink>
       </li>
-      <li className="font-bold text-lg">
+      <li className="font-bold ">
         <NavLink to={"/contact"}>Contact Us</NavLink>
       </li>
-      <li className="font-bold text-lg">
+      <li className="font-bold ">
         <NavLink to={"/all-countries"}>All Countries</NavLink>
       </li>
 
-      <li className="font-bold text-lg">
+      <li className="font-bold ">
         <NavLink to={"dash"}>Dashboard</NavLink>
       </li>
     </>
@@ -39,7 +40,7 @@ const Navbar = () => {
   return (
     <>
       <Headroom>
-      <div className="navbar  z-50 bg-transparent backdrop-blur-2xl shadow-lg px-12">
+      <div className="navbar z-50 bg-transparent backdrop-blur-2xl shadow-lg md:px-48">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -67,9 +68,9 @@ const Navbar = () => {
           </div>
           <Link
             to={"/"}
-            className="btn border-none shadow-none bg-transparent hover:scale-125  duration-300 ease-in-out hover:bg-transparent text-xl"
+            className=" btn border-none shadow-none bg-transparent hover:scale-125  duration-300 ease-in-out hover:bg-transparent text-xl"
           >
-            Ragib Shariar
+              <img className="object-contain w-full h-full" src={logo2} alt="" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -78,23 +79,9 @@ const Navbar = () => {
         {/* Navbar END */}
         <div className="navbar-end">
           <ul className="menu menu-horizontal">
-            {user?.uid ? (
-              <li className="font-bold">
-                <button
-                  onClick={handleLogOut}
-                  className="bg-red-500 text-white"
-                >
-                  Logout
-                </button>
-              </li>
-            ) : (
-              <li className="font-bold text-lg">
-                <Link to={"login"}>Login</Link>
-              </li>
-            )}
             {!user?.uid && (
               <li className="font-bold text-lg">
-                <Link to={"register"}>Registration</Link>
+                <Link to={"login"}>Login</Link>
               </li>
             )}
           </ul>
@@ -126,19 +113,19 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-60"
               >
-                <li>
-                  <Link to={'dash/profile'} className="justify-between">
+                <li className="my-1">
+                  <Link to={'dash/profile'} className="justify-between text-lg font-semibold">
                     Profile
                     <span className="badge">New</span>
                   </Link>
                 </li>
-                <li>
-                  <a>Settings</a>
+                <li className="my-1">
+                  <a className="text-lg font-semibold">Settings</a>
                 </li>
-                <li>
-                  <a onClick={handleLogOut}>Logout</a>
+                <li className="my-1">
+                  <a className="text-lg font-semibold" onClick={handleLogOut}>Logout</a>
                 </li>
               </ul>
             </div>

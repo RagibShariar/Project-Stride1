@@ -15,20 +15,23 @@ const GoogleLogin = () => {
   const handleGoogleLogin = () => {
     googleSignIn()
       .then((result) => {
-        const userInfo = {email: result.user.email, name: result.user.displayName, image: result.user.photoURL
-        }
+        const userInfo = {
+          email: result.user.email,
+          name: result.user.displayName,
+          image: result.user.photoURL,
+        };
         fetch(`http://localhost:5000/users`, {
-          method: 'POST',
+          method: "POST",
           headers: {
             "Content-type": "application/json",
           },
           body: JSON.stringify(userInfo),
         })
-          .then(res => res.json())
-          .then(data => {
+          .then((res) => res.json())
+          .then((data) => {
             // console.log(data);
-            localStorage.setItem('token', data?.token);
-        })
+            localStorage.setItem("token", data?.token);
+          });
         navigate(from || "/");
       })
       .catch((error) => {
@@ -38,9 +41,12 @@ const GoogleLogin = () => {
 
   return (
     <>
-      <button onClick={handleGoogleLogin} className="btn">
+      <button
+        onClick={handleGoogleLogin}
+        className="btn w-full rounded text-base font-semibold tracking-wider text-gray-900"
+      >
         <FcGoogle size={24} />
-        Google
+        Continue with Google
       </button>
     </>
   );

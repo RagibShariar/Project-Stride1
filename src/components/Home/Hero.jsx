@@ -1,35 +1,46 @@
-import toast, { Toaster } from "react-hot-toast";
-import Swal from "sweetalert2";
+import { SwiperSlide, Swiper } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import img1 from '../../assets/images/banner/1.jpeg'
+import img2 from '../../assets/images/banner/2.jpg'
+import img3 from '../../assets/images/banner/3.jpeg'
+import img4 from '../../assets/images/banner/4.png'
+import img5 from '../../assets/images/banner/5.jpg'
+import img6 from '../../assets/images/banner/6.jpg'
+import img7 from '../../assets/images/banner/7.jpg'
+
+
 
 const Hero = () => {
-  const handleClick = () => {
-    Swal.fire({
-      title: "You've Clicked!",
-      text: 'Do you want to continue',
-      icon: 'success',
-      confirmButtonText: 'Confirm'
-    })
-  }
+  
   return (
-    <>
-      <div className="hero min-h-[500px] bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-            className="max-w-sm rounded-lg shadow-2xl"
-          />
-          <div>
-            <h1 className="text-5xl font-bold">Box Office News!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-            <button onClick={handleClick} className="btn btn-primary">Get Started</button>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className='z-0 relative w-full '>
+      <Swiper
+      // spaceBetween={30}
+        centeredSlides={true}
+        loop={true}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+        pagination={{
+          type: 'progressbar',
+        // clickable: true,
+      }}
+      navigation={true}
+      modules={[Autoplay, Pagination, Navigation]}
+      className="mySwiper"
+    >
+        <SwiperSlide><img className='w-full' src={img3} alt="" /></SwiperSlide>
+        <SwiperSlide><img className='w-full'src={img2} alt="" /></SwiperSlide>
+        <SwiperSlide><img className='w-full'src={img1} alt="" /></SwiperSlide>
+        <SwiperSlide><img className='w-full'src={img6} alt="" /></SwiperSlide>
+        <SwiperSlide><img className='w-full'src={img7} alt="" /></SwiperSlide>
+    </Swiper>
+    </div>
   );
 };
 

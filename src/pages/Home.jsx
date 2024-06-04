@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Hero from "../components/Home/Hero";
 import HomeProducts from "../components/Home/HomeProducts";
+import Newsletter from "../components/Home/Newsletter";
+import Features from "../components/Home/Features";
+import Faq from "../components/Home/Faq";
+import Blogs from "../components/Home/Blogs";
+import BrandSlider from "../components/Home/BrandSlider";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -13,23 +18,28 @@ const Home = () => {
   }, []);
 
   const handleSeeMore = () => {
-      window.scrollTo(0, 0); // scroll to top of page
-      navigate("/shop")
-  }
+    window.scrollTo(0, 0); // scroll to top of page
+    navigate("/shop");
+  };
 
   return (
     <>
       <Hero />
+      <BrandSlider/>
       <HomeProducts products={products} />
 
-      <div className="text-center mb-10">
-        <button onClick={handleSeeMore} className="btn btn-lg w-48 btn-warning">
+
+      <div className="text-center my-10">
+        <button onClick={handleSeeMore} className="btn btn-lg w-48 btn-outline">
           See More
         </button>
       </div>
+      <Features />
+      <Blogs/>
+      <Faq/>
+      <Newsletter/>
     </>
   );
 };
 
 export default Home;
-

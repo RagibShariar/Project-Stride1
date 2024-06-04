@@ -3,7 +3,12 @@ import CountryDetails from "../components/SingleCountry/CountryDetails";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MainLayout from "../layouts/MainLayout";
 import AboutUs from "../pages/AboutUs";
+import AddProduct from "../pages/Admin/AddProduct";
 import AllProducts from "../pages/Admin/AllProducts";
+import AllUsers from "../pages/Admin/AllUsers";
+import EditProductPage from "../pages/Admin/EditProductPage";
+import EditUser from "../pages/Admin/EditUser";
+import Profile from "../pages/Admin/Profile";
 import AllCountries from "../pages/AllCountries";
 import ContactUs from "../pages/ContactUs";
 import Dashboard from "../pages/Dashboard";
@@ -14,12 +19,6 @@ import ProductDetails from "../pages/ProductDetails";
 import Register from "../pages/Register";
 import Shop from "../pages/Shop";
 import PrivateRoutes from "./PrivateRoutes";
-import AddProduct from "../pages/Admin/AddProduct";
-import EditProduct from "../pages/Admin/EditProductModal";
-import EditProductPage from "../pages/Admin/EditProductPage";
-import Profile from "../pages/Admin/Profile";
-import AllUsers from "../pages/Admin/AllUsers";
-import EditUser from "../pages/Admin/EditUser";
 
 export const router = createBrowserRouter([
   {
@@ -53,9 +52,7 @@ export const router = createBrowserRouter([
       {
         path: "shop",
         loader: () => fetch("http://localhost:5000/products"),
-        element: (
-            <Shop />
-        ),
+        element: <Shop />,
       },
       {
         path: "/products/:id",
@@ -104,7 +101,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dash/edit-product/:id",
-        loader: ({params})=> fetch(`http://localhost:5000/products/${params.id}`), 
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/products/${params.id}`),
         element: (
           <PrivateRoutes>
             <EditProductPage />
@@ -126,7 +124,7 @@ export const router = createBrowserRouter([
             <AllUsers />
           </PrivateRoutes>
         ),
-        loader: ()=> fetch(`http://localhost:5000/users`)
+        loader: () => fetch(`http://localhost:5000/users`),
       },
       {
         path: "/dash/edit-user/:userId",
@@ -135,7 +133,8 @@ export const router = createBrowserRouter([
             <EditUser />
           </PrivateRoutes>
         ),
-        loader: ({params})=> fetch(`http://localhost:5000/users/${params.userId}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/users/${params.userId}`),
       },
     ],
   },

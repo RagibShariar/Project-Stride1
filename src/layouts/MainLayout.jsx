@@ -7,12 +7,12 @@ const MainLayout = () => {
   const navigation = useNavigation();
 
   return (
-    <>
-      <ScrollRestoration/>
+    <div >
+      {/* <ScrollRestoration/> */}
       <Navbar />
       {navigation.state === "loading" ? <LoadingComponent /> : <Outlet />}
       <Footer />
-    </>
+    </div>
   );
 };
 

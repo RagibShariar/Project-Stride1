@@ -1,21 +1,21 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllUsers = () => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const users = useLoaderData();
 
   const handleDelete = (id) => {
-    console.log(id)
+    console.log(id);
     fetch(`http://localhost:5000/users/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         "Content-type": "application/json",
         authorization: `Bearer ${token}`,
       },
     })
-      .then(res => res.json())
-    .then(data => console.log(data))
-  }
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
 
   return (
     <>
@@ -32,19 +32,29 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              users.map((user) => <><tr key={user._id} className="hover">
-                <th>{user._id }</th>
-                <td>{ user.name}</td>
-              <td>{user.email}</td>
-                <td><img className="w-12 h-12" src={user.image} alt="" /></td>
-                <td>
-                  <Link to={`/dash/edit-user/${user._id}`}><button className="btn mx-2 btn-warning">edit</button></Link>
-                  <button onClick={() => handleDelete(`${user._id}`)} className="btn mx-2 btn-error">Delete</button>
-                </td>
-            </tr></>)
-            }
-            
+            {users.map((user) => (
+              <>
+                <tr key={user._id} className="hover">
+                  <th>{user._id}</th>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>
+                    <img className="w-12 h-12" src={user.image} alt="" />
+                  </td>
+                  <td>
+                    <Link to={`/dash/edit-user/${user._id}`}>
+                      <button className="btn mx-2 btn-warning">edit</button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(`${user._id}`)}
+                      className="btn mx-2 btn-error"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </>
+            ))}
           </tbody>
         </table>
       </div>
