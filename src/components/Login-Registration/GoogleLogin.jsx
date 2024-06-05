@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const GoogleLogin = () => {
   const googleProvider = new GoogleAuthProvider();
@@ -30,6 +31,10 @@ const GoogleLogin = () => {
           .then((res) => res.json())
           .then((data) => {
             // console.log(data);
+            Toast.fire({
+              icon: "success",
+              title: "Log in successfully"
+            });
             localStorage.setItem("token", data?.token);
           });
         navigate(from || "/");
@@ -38,6 +43,18 @@ const GoogleLogin = () => {
         console.log(error);
       });
   };
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
 
   return (
     <>

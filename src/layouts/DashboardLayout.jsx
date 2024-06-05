@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigation } from "react-router-dom";
 import { AuthContext } from "../components/Providers/AuthProvider";
 import { HashLoader } from "react-spinners";
@@ -6,6 +6,8 @@ import { HashLoader } from "react-spinners";
 const Dashboard = () => {
   const navigation = useNavigation();
   const { user, logOut } = useContext(AuthContext);
+ 
+
   const handleLogOut = () => {
     logOut();
   };
@@ -38,7 +40,9 @@ const Dashboard = () => {
                   alt=""
                 />
               </div>
-              <h1 className="mt-3 font-bold text-xl">{user?.displayName}</h1>
+              <h1 className="mt-3 font-bold text-xl">
+                { user?.displayName}
+              </h1>
               <p className="text-md font-semibold">{user?.email}</p>
             </div>
             {/* Sidebar content here */}

@@ -9,7 +9,7 @@ import { HashLoader } from "react-spinners";
 const MainLayout = () => {
   const navigation = useNavigation();
   const { loading } = useContext(AuthContext);
-  console.log(loading)
+  // console.log(loading)
 
   if (loading) {
     return (
