@@ -23,7 +23,7 @@ const AddProduct = () => {
       imageUrl,
     };
 
-    fetch("http://localhost:5000/products", {
+    fetch("https://best-furniture-server.onrender.com/products", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -81,7 +81,7 @@ const AddProduct = () => {
               <p className="text-lg">Category</p>
               <select className="select select-bordered w-full mt-2 text-xl font-semibold bg-zinc-200 rounded-lg ">
                 <option disabled selected>
-                Select Category
+                  Select Category
                 </option>
                 <option>Table</option>
                 <option>Chair</option>

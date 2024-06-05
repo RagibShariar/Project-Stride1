@@ -51,13 +51,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "shop",
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () =>
+          fetch("https://best-furniture-server.onrender.com/products"),
         element: <Shop />,
       },
       {
         path: "/products/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://best-furniture-server.onrender.com/products/${params.id}`
+          ),
         element: <ProductDetails />,
       },
       {
@@ -102,7 +105,9 @@ export const router = createBrowserRouter([
       {
         path: "/dash/edit-product/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://best-furniture-server.onrender.com/products/${params.id}`
+          ),
         element: (
           <PrivateRoutes>
             <EditProductPage />
@@ -124,7 +129,7 @@ export const router = createBrowserRouter([
             <AllUsers />
           </PrivateRoutes>
         ),
-        loader: () => fetch(`http://localhost:5000/users`),
+        loader: () => fetch(`https://best-furniture-server.onrender.com/users`),
       },
       {
         path: "/dash/edit-user/:userId",
@@ -134,7 +139,9 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/users/${params.userId}`),
+          fetch(
+            `https://best-furniture-server.onrender.com/users/${params.userId}`
+          ),
       },
     ],
   },

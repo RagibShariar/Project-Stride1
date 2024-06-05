@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 const ContactUs = () => {
   return (
     <>
+      <Helmet>
+        <title>Best Furniture | Contact Us</title>
+      </Helmet>
       <div className="text-center my-12">
             <h2 className="sm:text-4xl text-2xl font-extrabold text-[#333] inline-block relative after:absolute after:w-4/6 after:h-1 after:left-0 after:right-0 after:-bottom-4 after:mx-auto after:bg-pink-400 after:rounded-full">
              Contact Us

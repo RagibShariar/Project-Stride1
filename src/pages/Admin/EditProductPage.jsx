@@ -39,14 +39,17 @@ const EditProductPage = () => {
 
     // console.log("new data after edit", edited_data);
 
-    fetch(`http://localhost:5000/products/${product._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(productInfo),
-    })
+    fetch(
+      `https://best-furniture-server.onrender.com/products/${product._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(productInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire({

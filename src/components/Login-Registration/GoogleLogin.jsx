@@ -20,7 +20,7 @@ const GoogleLogin = () => {
           name: result.user.displayName,
           image: result.user.photoURL,
         };
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://best-furniture-server.onrender.com/users`, {
           method: "POST",
           headers: {
             "Content-type": "application/json",

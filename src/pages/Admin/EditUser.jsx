@@ -14,7 +14,7 @@ const EditUser = () => {
     const image = form.image.value;
     const userInfo = { name, email, image };
 
-    fetch(`http://localhost:5000/users/${user._id}`, {
+    fetch(`https://best-furniture-server.onrender.com/users/${user._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

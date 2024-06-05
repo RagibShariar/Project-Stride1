@@ -67,7 +67,7 @@ const Register = () => {
         .then((result) => {
           // navigate(location?.state ? location.state : '/')
 
-          fetch(`http://localhost:5000/users`, {
+          fetch(`https://best-furniture-server.onrender.com/users`, {
             method: "POST",
             headers: {
               "Content-type": "application/json",

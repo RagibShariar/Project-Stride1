@@ -30,6 +30,10 @@ const Login = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  if (user) {
+    navigate("/");
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -40,7 +44,7 @@ const Login = () => {
       .then((result) => {
         // navigate(location?.state ? location.state : '/')
 
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://best-furniture-server.onrender.com/users`, {
           method: "POST",
           headers: {
             "Content-type": "application/json",

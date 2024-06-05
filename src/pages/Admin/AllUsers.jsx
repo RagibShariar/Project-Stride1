@@ -6,7 +6,7 @@ const AllUsers = () => {
 
   const handleDelete = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://best-furniture-server.onrender.com/users/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
